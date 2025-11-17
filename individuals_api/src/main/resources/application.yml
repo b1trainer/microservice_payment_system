@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: individuals_api
+  security:
+    oauth2:
+      client:
+        registration:
+          keycloak:
+            provider: keycloak
+            client-id: orchestrator
+            client-secret: BpmD2l7Jk1TWuZPjtq6jA9X4AetCjZUO
+            client-name: orchestrator
+            authorization-grant-type: authorization_code
+            scope:
+              - openid
+              - profile
+              - email
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/orchestrator

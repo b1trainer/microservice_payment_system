@@ -34,7 +34,7 @@ public class AuthController {
         return null;
     }
 
-    @PostMapping("refresh-token")
+    @PostMapping("/refresh-token")
     public Mono<ResponseEntity<TokenResponse>> refreshToken() {
         return null;
     }
