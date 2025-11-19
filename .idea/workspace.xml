@@ -5,26 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb2dd87d-7f5a-4378-a088-ca81ddf8564a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/build.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/gradle.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/settings.gradle.kts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/specs/individuals_api_v1.0.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/IndividualsApiApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/logback.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/IndividualsApiApplicationTests.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/TestIndividualsApiApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/TestcontainersConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/alert.rules.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/individuals_api/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/individuals_api/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/individuals_api/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/individuals_api/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/client/KeycloakClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/client/KeycloakClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/prometheus.yml" beforeDir="false" afterPath="$PROJECT_DIR$/prometheus.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,28 +36,7 @@
         </task>
         <projects_view>
           <tree_state>
-            <expand>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="individuals_api" type="f1a62948:ProjectNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="individuals_api" type="f1a62948:ProjectNode" />
-                <item name="Tasks" type="e4a08cd1:TasksNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="individuals_api" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-              </path>
-              <path>
-                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
-                <item name="individuals_api" type="f1a62948:ProjectNode" />
-                <item name="Dependencies" type="6de06a37:ExternalSystemViewDefaultContributor$MyDependenciesNode" />
-                <item name="testCompileClasspath" type="62daadca:ExternalSystemViewDefaultContributor$DependencyScopeExternalSystemNode" />
-              </path>
-            </expand>
+            <expand />
             <select />
           </tree_state>
         </projects_view>
@@ -111,16 +82,16 @@
     "git-widget-placeholder": "main",
     "jdk.selected.JAVA_MODULE": "corretto-24",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/microservice_payment_system",
+    "last_opened_file_path": "C:/Work/Learning/microservice_payment_system",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
+    "project.structure.last.edited": "Problems",
+    "project.structure.proportion": "0.22393823",
     "project.structure.side.proportion": "0.32068965",
-    "settings.editor.selected.configurable": "com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable",
+    "settings.editor.selected.configurable": "terminal",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -197,19 +168,6 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="microservice_payment_system" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="microservice_payment_system" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="individuals_api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <option name="ALTERNATIVE_JRE_PATH" value="corretto-24" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -243,10 +201,21 @@
       <updated>1763286679680</updated>
       <workItem from="1763286680750" duration="396000" />
       <workItem from="1763287532450" duration="9297000" />
+      <workItem from="1763354963046" duration="3774000" />
+      <workItem from="1763443636757" duration="984000" />
+      <workItem from="1763444637537" duration="1018000" />
+      <workItem from="1763445665347" duration="50000" />
+      <workItem from="1763445724767" duration="2654000" />
+      <workItem from="1763529552281" duration="21000" />
+      <workItem from="1763529581728" duration="1251000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

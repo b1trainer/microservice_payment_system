@@ -18,6 +18,10 @@ spring:
               - openid
               - profile
               - email
+          provider:
+            keycloak:
+              issuer-uri: http://localhost:8080/realms/orchestrator
+              token-uri: http://localhost:8080/realms/orchestrator/protocol/openid-connect/token
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/orchestrator
