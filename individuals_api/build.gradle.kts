@@ -56,7 +56,7 @@ openApiGenerate {
 sourceSets {
     main {
         java {
-            srcDir("$buildDir/generated/individuals_api_v1.0/src/main/java")
+            srcDir("$buildDir/generated/individuals_api_v1.0/src/main/java/org/openapi/individuals/dto")
         }
     }
 }

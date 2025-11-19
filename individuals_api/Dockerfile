@@ -1,12 +1,14 @@
-FROM gradle:8.14.3-jdk24 AS builder
+FROM eclipse-temurin:24-jdk AS builder
 
 WORKDIR /app
 
-COPY . .
+COPY . /app
 
-RUN gradle clean build --no-daemon
+RUN ./gradlew dependencies --no-daemon
+RUN ./gradlew openApiGenerate --no-daemon
+RUN ./gradlew bootJar --no-daemon
 
-FROM eclipse-temurin:24-jre-alpine-3.20
+FROM eclipse-temurin:24-jdk
 
 WORKDIR /app
 

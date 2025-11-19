@@ -1,0 +1,13 @@
+global:
+  scrape_interval: 1m
+
+rule_files:
+  - "alerts.rules.yml"
+
+scrape_configs:
+  - job_name: "prometheus"
+    static_configs:
+      - targets: ["prometheus:9090"]
+  - job_name: "individuals_api"
+    static_configs:
+      - targets: ["individuals_api:8081"]
