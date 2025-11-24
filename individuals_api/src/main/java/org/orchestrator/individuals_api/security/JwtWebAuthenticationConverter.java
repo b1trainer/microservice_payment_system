@@ -12,7 +12,7 @@ import java.util.Collection;
 
 public class JwtWebAuthenticationConverter {
 
-    public static Converter<Jwt, Mono<AbstractAuthenticationToken>> getConverter() {
+    public static Converter<Jwt, Mono<AbstractAuthenticationToken>> getToken() {
         JwtGrantedAuthoritiesConverter authoritiesConverter = new JwtGrantedAuthoritiesConverter();
         authoritiesConverter.setAuthorityPrefix("ROLE_");
         authoritiesConverter.setAuthoritiesClaimName("roles");
