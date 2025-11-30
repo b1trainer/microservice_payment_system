@@ -1,6 +1,12 @@
 server:
   port: 8081
 
+webclient:
+  timeout:
+    connection: 5000
+    response: 10000
+    read: 30000
+
 spring:
   application:
     name: individuals_api
@@ -11,6 +17,7 @@ spring:
           keycloak:
             issuer-uri: http://localhost:8080/realms/orchestrator
             token-uri: http://localhost:8080/realms/orchestrator/protocol/openid-connect/token
+            user-info-uri: http://localhost:8080/realms/orchestrator/protocol/openid-connect/userinfo
         registration:
           keycloak:
             provider: keycloak
