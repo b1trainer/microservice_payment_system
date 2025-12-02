@@ -1,4 +1,24 @@
 services:
+  individuals-api:
+    build: ./individuals_api
+    container_name: individuals_api
+    ports:
+      - "8081:8081"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    depends_on:
+#      keycloak:
+#        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+#      loki:
+#        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:8081/actuator/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
   keycloak:
     image: quay.io/keycloak/keycloak:latest
     container_name: individuals-keycloak
@@ -18,7 +38,7 @@ services:
       keycloak-postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      test: ["CMD", "wget", "--spider", "http://localhost:8080/health"]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -38,53 +58,35 @@ services:
       timeout: 5s
       retries: 5
 
-  individuals-api:
-    build: ./individuals_api
-    container_name: individuals-api
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
     ports:
-      - "8081:8081"
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    depends_on:
-      keycloak:
-        condition: service_healthy
-#      prometheus:
-#        condition: service_healthy
-#      loki:
-#        condition: service_healthy
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8081/actuator/health"]
+      test: ["CMD", "wget", "--spider", "http://localhost:9090/-/healthy"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-#  prometheus:
-#    image: prom/prometheus:latest
-#    container_name: prometheus
-#    ports:
-#      - "9090:9090"
-#    volumes:
-#      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-#    healthcheck:
-#      test: ["CMD", "wget", "--spider", "http://localhost:9090/-/healthy"]
-#      interval: 10s
-#      timeout: 5s
-#      retries: 5
-#
-#  loki:
-#    image: grafana/loki:2.9.2
-#    container_name: loki
-#    ports:
-#      - "3100:3100"
-#    command: -config.file=/etc/loki/local-config.yaml
-#    volumes:
-#      - ./loki/loki-config.yaml:/etc/loki/local-config.yaml
-#    healthcheck:
-#      test: ["CMD", "wget", "--spider", "http://localhost:3100/ready"]
-#      interval: 10s
-#      timeout: 5s
-#      retries: 5
-#
+  loki:
+    image: grafana/loki:2.9.2
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/loki-config.yaml
+    user: root
+    volumes:
+      - ./loki/loki-config.yaml:/etc/loki/loki-config.yaml
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "http://localhost:3100/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
 #  grafana:
 #    image: grafana/grafana:10.3.1
 #    container_name: grafana

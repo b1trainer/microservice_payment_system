@@ -7,10 +7,11 @@
     <list default="true" id="cb2dd87d-7f5a-4378-a088-ca81ddf8564a" name="Changes" comment="keycloak">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/security/JwtWebAuthenticationConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/security/JwtWebAuthenticationConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/client/KeycloakClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/client/KeycloakClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/loki.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,69 +87,53 @@
     <option name="openDirectoriesWithSingleClick" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Docker.docker-compose.yml.individuals_api: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.keycloak-postgres: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.keycloak: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.docker-compose.yml.prometheus: Compose Deployment.executor&quot;: &quot;Run&quot;,
-    &quot;Docker.individuals_api/Dockerfile.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Build individuals_api.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.Load Gradle Dependencies.executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.individuals_api [build].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.individuals_api [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Gradle.individuals_api [openApiGenerate].executor&quot;: &quot;Run&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.individuals_api.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-24&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/User/Desktop/file_manager/spring_s3_file_manager_system&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.32068965&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Docker.docker-compose.yml.individuals-api: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.individuals_api: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.keycloak-postgres: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.keycloak: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.loki: Compose Deployment.executor": "Run",
+    "Docker.docker-compose.yml.prometheus: Compose Deployment.executor": "Run",
+    "Docker.individuals_api/Dockerfile.executor": "Run",
+    "Gradle.Build individuals_api.executor": "Run",
+    "Gradle.Load Gradle Dependencies.executor": "Run",
+    "Gradle.individuals_api [build].executor": "Run",
+    "Gradle.individuals_api [clean].executor": "Run",
+    "Gradle.individuals_api [openApiGenerate].executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.individuals_api.executor": "Run",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "jdk.selected.JAVA_MODULE": "corretto-24",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/User/Desktop/microservice_payment_system/individuals_api",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.32068965",
+    "settings.editor.selected.configurable": "com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.orchestrator.individuals_api.exception" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\User\Desktop\microservice_payment_system" />
       <recent name="C:\Users\User\Desktop\microservice_payment_system\individuals_api\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.individuals_api [openApiGenerate]">
-    <configuration name="individuals_api [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$/individuals_api" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value="clean" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
-      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
-      <DebugAllEnabled>false</DebugAllEnabled>
-      <RunAsTest>false</RunAsTest>
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Docker.docker-compose.yml.loki: Compose Deployment">
     <configuration name="individuals_api [openApiGenerate]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -205,25 +190,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.individuals_api: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml.individuals-api: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="individuals_api" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.keycloak-postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="keycloak-postgres" />
+              <option value="individuals-api" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
@@ -244,21 +216,47 @@
       </deployment>
       <method v="2" />
     </configuration>
+    <configuration name="docker-compose.yml.loki: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="loki" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
+    <configuration name="docker-compose.yml.prometheus: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+      <deployment type="docker-compose.yml">
+        <settings>
+          <option name="services">
+            <list>
+              <option value="prometheus" />
+            </list>
+          </option>
+          <option name="sourceFilePath" value="docker-compose.yml" />
+        </settings>
+      </deployment>
+      <method v="2" />
+    </configuration>
     <list>
-      <item itemvalue="Docker.docker-compose.yml.individuals_api: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.keycloak-postgres: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.individuals-api: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.loki: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.prometheus: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.keycloak: Compose Deployment" />
-      <item itemvalue="Gradle.individuals_api [clean]" />
       <item itemvalue="Gradle.individuals_api [openApiGenerate]" />
       <item itemvalue="Spring Boot.individuals_api" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml.loki: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.prometheus: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml.individuals-api: Compose Deployment" />
         <item itemvalue="Gradle.individuals_api [openApiGenerate]" />
         <item itemvalue="Docker.docker-compose.yml.keycloak: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.keycloak-postgres: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.individuals_api: Compose Deployment" />
-        <item itemvalue="Gradle.individuals_api [clean]" />
       </list>
     </recent_temporary>
   </component>
@@ -275,7 +273,9 @@
       <workItem from="1763572265463" duration="5059000" />
       <workItem from="1763578564468" duration="109000" />
       <workItem from="1763651999161" duration="2615000" />
-      <workItem from="1763998001396" duration="7009000" />
+      <workItem from="1763998001396" duration="8788000" />
+      <workItem from="1764494780037" duration="18636000" />
+      <workItem from="1764687880695" duration="6366000" />
     </task>
     <servers />
   </component>

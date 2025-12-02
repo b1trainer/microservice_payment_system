@@ -45,8 +45,7 @@ public class KeycloakClient {
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .body(BodyInserters.fromFormData(params))
                 .retrieve()
-                .bodyToMono(TokenResponse.class)
-                .cache(Duration.ofMinutes(30));
+                .bodyToMono(TokenResponse.class);
     }
 
     public Mono<TokenResponse> createUser(String adminToken, String email, String password) {
