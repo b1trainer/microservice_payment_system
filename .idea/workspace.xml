@@ -5,16 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cb2dd87d-7f5a-4378-a088-ca81ddf8564a" name="Changes" comment="keycloak">
+      <change afterPath="$PROJECT_DIR$/grafana/dashboards/23634_rev1.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grafana/provisioning/dashboards/default.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/grafana/provisioning/datasources/datasources.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/client/KeycloakClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/client/KeycloakClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/resources/realm-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/realm-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/loki/loki-config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/loki/loki-config.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/.idea/vcs.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,13 +113,13 @@
     "ignore.virus.scanning.warn.message": "true",
     "jdk.selected.JAVA_MODULE": "corretto-24",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/microservice_payment_system/individuals_api",
+    "last_opened_file_path": "C:/Users/User/Desktop/microservice_payment_system/grafana/dashboards",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
+    "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.32068965",
     "settings.editor.selected.configurable": "com.intellij.platform.ide.impl.presentationAssistant.PresentationAssistantConfigurable",
@@ -130,12 +133,16 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.orchestrator.individuals_api.exception" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\microservice_payment_system\grafana\dashboards" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\User\Desktop\microservice_payment_system\individuals_api\openapi" />
       <recent name="C:\Users\User\Desktop\microservice_payment_system" />
       <recent name="C:\Users\User\Desktop\microservice_payment_system\individuals_api\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.individuals_api">
+  <component name="RunManager" selected="Docker.docker-compose.yml.grafana: Compose Deployment">
     <configuration name="individuals_api [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -222,12 +229,12 @@
       </deployment>
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml.keycloak-postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
+    <configuration name="docker-compose.yml.grafana: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
       <deployment type="docker-compose.yml">
         <settings>
           <option name="services">
             <list>
-              <option value="keycloak-postgres" />
+              <option value="grafana" />
             </list>
           </option>
           <option name="sourceFilePath" value="docker-compose.yml" />
@@ -249,7 +256,7 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Docker.docker-compose.yml.keycloak-postgres: Compose Deployment" />
+      <item itemvalue="Docker.docker-compose.yml.grafana: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
       <item itemvalue="Docker.docker-compose.yml.keycloak: Compose Deployment" />
       <item itemvalue="Gradle.individuals_api [clean]" />
@@ -258,11 +265,11 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Docker.docker-compose.yml.grafana: Compose Deployment" />
+        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
         <item itemvalue="Gradle.individuals_api [openApiGenerate]" />
         <item itemvalue="Gradle.individuals_api [clean]" />
         <item itemvalue="Docker.docker-compose.yml.keycloak: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.keycloak-postgres: Compose Deployment" />
       </list>
     </recent_temporary>
   </component>
@@ -283,7 +290,10 @@
       <workItem from="1764494780037" duration="18636000" />
       <workItem from="1764687880695" duration="7011000" />
       <workItem from="1765102274432" duration="8408000" />
-      <workItem from="1765114671696" duration="10756000" />
+      <workItem from="1765114671696" duration="10809000" />
+      <workItem from="1765125809247" duration="13000" />
+      <workItem from="1765125845772" duration="237000" />
+      <workItem from="1765126100498" duration="3372000" />
     </task>
     <servers />
   </component>
