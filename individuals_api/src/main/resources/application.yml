@@ -25,14 +25,13 @@ spring:
       client:
         provider:
           keycloak:
-            issuer-uri: http://localhost:8080/realms/orchestrator
             token-uri: http://localhost:8080/realms/orchestrator/protocol/openid-connect/token
-            user-info-uri: http://localhost:8080/realms/orchestrator/protocol/openid-connect/userinfo
+            authorization-uri: http://localhost:8080/admin/realms/orchestrator/users
         registration:
           keycloak:
             provider: keycloak
             client-id: orchestrator
-            client-secret: BpmD2l7Jk1TWuZPjtq6jA9X4AetCjZUO
+            client-secret: UXZLFcKOlgakfTy12nff8ZaJ2LmNcOCo
             client-name: orchestrator
             authorization-grant-type: authorization_code
             scope:

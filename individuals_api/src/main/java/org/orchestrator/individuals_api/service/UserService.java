@@ -6,13 +6,14 @@ import org.openapi.individuals.dto.UserRegistrationRequest;
 import org.openapi.individuals.dto.UserLoginRequest;
 import org.openapi.individuals.dto.TokenRefreshRequest;
 
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import reactor.core.publisher.Mono;
 
 public interface UserService {
 
     Mono<TokenResponse> signIn(UserRegistrationRequest request);
 
-    Mono<UserInfoResponse> getInfo(String token);
+    Mono<UserInfoResponse> getInfo(JwtAuthenticationToken token);
 
     Mono<TokenResponse> logIn(UserLoginRequest loginRequest);
 

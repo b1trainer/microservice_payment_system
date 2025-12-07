@@ -13,7 +13,6 @@ import reactor.core.publisher.Mono;
 import org.openapi.individuals.dto.TokenResponse;
 import org.openapi.individuals.dto.UserInfoResponse;
 
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,7 +53,7 @@ public class KeycloakClient {
         userRepresentation.put("username", email);
         userRepresentation.put("email", email);
         userRepresentation.put("enabled", true);
-        userRepresentation.put("emailVerified", false);
+        userRepresentation.put("emailVerified", true); // crutches
         userRepresentation.put("credentials", List.of(
                 Map.of(
                         "type", "password",
@@ -66,9 +65,9 @@ public class KeycloakClient {
         logger.info("Sending request to create user {}", email);
 
         return webClient.post()
-                .uri(securityConfig.getTokenUrl())
-                .header(HttpHeaders.AUTHORIZATION, "Bearer_" + adminToken)
-                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .uri(securityConfig.getAuthUrl())
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + adminToken)
+                .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(userRepresentation)
                 .retrieve()
                 .bodyToMono(TokenResponse.class);
@@ -109,11 +108,11 @@ public class KeycloakClient {
                 .bodyToMono(TokenResponse.class);
     }
 
-    public Mono<UserInfoResponse> getUserInfo(String accessToken) {
-        logger.info("Sending request to get user info");
+    public Mono<UserInfoResponse> getUserInfo(String accessToken, String userId) {
+        logger.info("Sending request to get info for user {}", userId);
         return webClient.get()
-                .uri(securityConfig.getUserInfoUrl())
-                .header(HttpHeaders.AUTHORIZATION, "Bearer_" + accessToken)
+                .uri(securityConfig.getAuthUrl() + "/" + userId)
+                .header(HttpHeaders.AUTHORIZATION, "Bearer " + accessToken)
                 .retrieve()
                 .bodyToMono(UserInfoResponse.class);
     }

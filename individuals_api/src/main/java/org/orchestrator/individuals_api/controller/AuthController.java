@@ -8,6 +8,7 @@ import org.openapi.individuals.dto.TokenRefreshRequest;
 import org.orchestrator.individuals_api.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.ReactiveSecurityContextHolder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
@@ -42,12 +43,8 @@ public class AuthController {
     }
 
     @GetMapping("/me")
-    public Mono<ResponseEntity<UserInfoResponse>> getUserInfo() {
-        return ReactiveSecurityContextHolder.getContext()
-                .map(context ->
-                        ((JwtAuthenticationToken) context.getAuthentication()).getToken().getTokenValue()
-                )
-                .flatMap(userService::getInfo)
+    public Mono<ResponseEntity<UserInfoResponse>> getUserInfo(@AuthenticationPrincipal JwtAuthenticationToken authentication) {
+        return userService.getInfo(authentication)
                 .map(user -> ResponseEntity.status(HttpStatus.OK).body(user));
     }
 }

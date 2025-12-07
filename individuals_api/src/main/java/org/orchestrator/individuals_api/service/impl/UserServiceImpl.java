@@ -12,6 +12,8 @@ import org.orchestrator.individuals_api.service.TokenService;
 import org.orchestrator.individuals_api.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -60,8 +62,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Mono<UserInfoResponse> getInfo(String accessToken) {
-        return keycloakClient.getUserInfo(accessToken)
+    public Mono<UserInfoResponse> getInfo(JwtAuthenticationToken authentication) {
+        return keycloakClient.getUserInfo(authentication.getToken().getTokenValue(), ((Jwt) authentication.getPrincipal()).getSubject())
                 .doOnSuccess(res -> logger.info("User info fetched successfully"))
                 .doOnError(error -> logger.error("Failed to fetch user info", error))
                 .onErrorMap(Exception.class, err -> new UserInfoException("Failed to fetch user information: " + err.getMessage()));
