@@ -6,6 +6,11 @@ services:
       - "8081:8081"
     environment:
       SPRING_PROFILES_ACTIVE: docker
+      CLIENT_ID: orchestrator
+      CLIENT_NAME: orchestrator
+      KEYCLOAK_REALM: orchestrator
+      CLIENT_SECRET: UXZLFcKOlgakfTy12nff8ZaJ2LmNcOCo
+      OAUTH2_JWT_ISSUER_URI: http://localhost:8080/realms/orchestrator
     depends_on:
       keycloak:
         condition: service_started
@@ -14,7 +19,7 @@ services:
       loki:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:8081/actuator/health"]
+      test: [ "CMD", "wget", "--spider", "http://localhost:8081/actuator/health" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -38,7 +43,7 @@ services:
       keycloak-postgres:
         condition: service_healthy
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:8080/"]
+      test: [ "CMD", "wget", "--spider", "http://localhost:8080/" ]
       interval: 10s
       timeout: 5s
       retries: 10
@@ -55,7 +60,7 @@ services:
     ports:
       - "5433:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U keycloak"]
+      test: [ "CMD-SHELL", "pg_isready -U keycloak" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -66,10 +71,10 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
-      - ./prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
+      - ./infrastructure/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./infrastructure/prometheus/alert.rules.yml:/etc/prometheus/alert.rules.yml
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:9090/-/healthy"]
+      test: [ "CMD", "wget", "--spider", "http://localhost:9090/-/healthy" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -82,9 +87,9 @@ services:
     command: -config.file=/etc/loki/loki-config.yaml
     user: root
     volumes:
-      - ./loki/loki-config.yaml:/etc/loki/loki-config.yaml
+      - ./infrastructure/loki/loki-config.yaml:/etc/loki/loki-config.yaml
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:3100/ready"]
+      test: [ "CMD", "wget", "--spider", "http://localhost:3100/ready" ]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -103,11 +108,11 @@ services:
       GF_SECURITY_ADMIN_USER: admin
       GF_SECURITY_ADMIN_PASSWORD: admin
     volumes:
-      - ./grafana/provisioning:/etc/grafana/provisioning
-      - ./grafana/dashboards:/var/lib/grafana/dashboards
+      - ./infrastructure/grafana/provisioning:/etc/grafana/provisioning
+      - ./infrastructure/grafana/dashboards:/var/lib/grafana/dashboards
       - grafana-data:/var/lib/grafana
     healthcheck:
-      test: ["CMD", "wget", "--spider", "http://localhost:3000/api/health"]
+      test: [ "CMD", "wget", "--spider", "http://localhost:3000/api/health" ]
       interval: 10s
       timeout: 5s
       retries: 5

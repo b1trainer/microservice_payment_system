@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/grafana/grafana.iml" filepath="$PROJECT_DIR$/grafana/grafana.iml" />
-      <module fileurl="file://$PROJECT_DIR$/loki/loki.iml" filepath="$PROJECT_DIR$/loki/loki.iml" />
-      <module fileurl="file://$PROJECT_DIR$/prometheus/prometheus.iml" filepath="$PROJECT_DIR$/prometheus/prometheus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/infrastructure/infrastructure.iml" filepath="$PROJECT_DIR$/infrastructure/infrastructure.iml" />
     </modules>
   </component>
 </project>

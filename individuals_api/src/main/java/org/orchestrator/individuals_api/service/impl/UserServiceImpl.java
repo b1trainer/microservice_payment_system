@@ -5,11 +5,14 @@ import org.openapi.individuals.dto.TokenResponse;
 import org.openapi.individuals.dto.UserInfoResponse;
 import org.openapi.individuals.dto.UserLoginRequest;
 import org.openapi.individuals.dto.UserRegistrationRequest;
-import org.orchestrator.individuals_api.client.KeycloakClient;
+import org.orchestrator.individuals_api.config.SecurityConfig;
 import org.orchestrator.individuals_api.exception.KeycloakAuthException;
 import org.orchestrator.individuals_api.exception.UserInfoException;
 import org.orchestrator.individuals_api.service.TokenService;
 import org.orchestrator.individuals_api.service.UserService;
+import org.openapi.individuals.api.AuthenticationApi;
+import org.openapi.individuals.api.UsersApi;
+import org.openapi.individuals.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -22,12 +25,19 @@ public class UserServiceImpl implements UserService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
+    private final UsersApi usersApi;
+    private final AuthenticationApi authenticationApi;
+    private final ApiClient apiClient;
     private final TokenService tokenService;
-    private final KeycloakClient keycloakClient;
+    private final SecurityConfig securityConfig;
 
-    public UserServiceImpl(TokenService tokenService, KeycloakClient keycloakClient) {
+    public UserServiceImpl(TokenService tokenService, SecurityConfig securityConfig,
+                           AuthenticationApi authenticationApi, UsersApi usersApi, ApiClient apiClient) {
+        this.usersApi = usersApi;
+        this.authenticationApi = authenticationApi;
+        this.apiClient = apiClient;
         this.tokenService = tokenService;
-        this.keycloakClient = keycloakClient;
+        this.securityConfig = securityConfig;
     }
 
     @Override
@@ -36,14 +46,25 @@ public class UserServiceImpl implements UserService {
 
         logger.info("Starting registration for user: {}", userEmail);
 
-        return keycloakClient.getAdminAccessToken()
+        return authenticationApi.getToken(
+                        securityConfig.getRealm(),
+                        "client_credentials",
+                        securityConfig.getClientId(),
+                        securityConfig.getClientSecret(),
+                        null,
+                        null,
+                        null
+                )
                 .onErrorMap(Exception.class, err -> new KeycloakAuthException("Failed to get admin access token: " + err))
                 .flatMap(adminResponse ->
-                        keycloakClient.createUser(adminResponse.getAccessToken(), userEmail, signInRequest.getPassword())
-                                .doOnSuccess(res -> logger.info("User {} successfully created", userEmail))
-                                .then(tokenService.getAccessToken(userEmail, signInRequest.getPassword()))
-                                .doOnSuccess(res -> logger.info("User {} successfully sign in", userEmail))
-                                .doOnError(error -> logger.error("User sign in is failed", error))
+                        {
+                            apiClient.setBearerToken(adminResponse.getAccessToken());
+                            return usersApi.createUser(securityConfig.getRealm(), signInRequest)
+                                    .doOnSuccess(res -> logger.info("User {} successfully created", userEmail))
+                                    .then(tokenService.getAccessToken(userEmail, signInRequest.getPassword()))
+                                    .doOnSuccess(res -> logger.info("User {} successfully sign in", userEmail))
+                                    .doOnError(error -> logger.error("User sign in is failed", error));
+                        }
                 );
     }
 
@@ -63,7 +84,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Mono<UserInfoResponse> getInfo(JwtAuthenticationToken authentication) {
-        return keycloakClient.getUserInfo(authentication.getToken().getTokenValue(), ((Jwt) authentication.getPrincipal()).getSubject())
+        return usersApi.getUserInfoById(securityConfig.getRealm(), ((Jwt) authentication.getPrincipal()).getSubject())
                 .doOnSuccess(res -> logger.info("User info fetched successfully"))
                 .doOnError(error -> logger.error("Failed to fetch user info", error))
                 .onErrorMap(Exception.class, err -> new UserInfoException("Failed to fetch user information: " + err.getMessage()));

@@ -7,16 +7,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.reactive.EnableWebFluxSecurity;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 import org.springframework.security.web.server.SecurityWebFilterChain;
+import org.springframework.security.web.server.util.matcher.PathPatternParserServerWebExchangeMatcher;
+import org.springframework.security.web.server.util.matcher.ServerWebExchangeMatcher;
 
 @Configuration
 @EnableWebFluxSecurity
 public class SecurityConfig {
-
-    @Value("${spring.security.oauth2.client.provider.keycloak.token-uri}")
-    private String tokenUrl;
-
-    @Value("${spring.security.oauth2.client.provider.keycloak.authorization-uri}")
-    private String authUrl;
 
     @Value("${spring.security.oauth2.client.registration.keycloak.client-id}")
     private String clientId;
@@ -24,15 +20,16 @@ public class SecurityConfig {
     @Value("${spring.security.oauth2.client.registration.keycloak.client-secret}")
     private String clientSecret;
 
-    private final String[] NO_AUTH_PATHS = {"/actuator/**", "/v1/auth/login", "/v1/auth/registration", "/v1/auth/refresh-token"};
+    @Value("${keycloak.config.realm}")
+    private String realm;
 
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         return http
                 .csrf(ServerHttpSecurity.CsrfSpec::disable)
                 .authorizeExchange(auth -> auth
-                        .pathMatchers(NO_AUTH_PATHS).permitAll()
-                        .pathMatchers("/v1/auth/me").authenticated()
+                        .matchers(publicPaths()).permitAll()
+                        .matchers(privatePaths()).authenticated()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2
@@ -41,8 +38,23 @@ public class SecurityConfig {
                 .build();
     }
 
-    public String getTokenUrl() {
-        return tokenUrl;
+    private ServerWebExchangeMatcher[] publicPaths() {
+        return new ServerWebExchangeMatcher[]{
+                pathMatcher("/actuator/**"),
+                pathMatcher("/v1/auth/login"),
+                pathMatcher("/v1/auth/registration"),
+                pathMatcher("/v1/auth/refresh-token"),
+        };
+    }
+
+    private ServerWebExchangeMatcher[] privatePaths() {
+        return new ServerWebExchangeMatcher[]{
+                pathMatcher("/v1/auth/me")
+        };
+    }
+
+    private PathPatternParserServerWebExchangeMatcher pathMatcher(String pattern) {
+        return new PathPatternParserServerWebExchangeMatcher(pattern);
     }
 
     public String getClientId() {
@@ -53,7 +65,7 @@ public class SecurityConfig {
         return clientSecret;
     }
 
-    public String getAuthUrl() {
-        return authUrl;
+    public String getRealm() {
+        return realm;
     }
 }

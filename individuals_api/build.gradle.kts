@@ -44,21 +44,30 @@ tasks.withType<Test> {
 }
 
 openApiGenerate {
-    generatorName.set("spring")
+    generatorName.set("java")
     inputSpec.set("$rootDir/openapi/individuals_api_v1.0.yaml")
     outputDir.set("$buildDir/generated/individuals_api_v1.0")
     apiPackage.set("org.openapi.individuals.api")
     modelPackage.set("org.openapi.individuals.dto")
+    invokerPackage.set("org.openapi.individuals.invoker")
     configOptions.set(mapOf(
         "useSpringBoot3" to "true",
         "reactive" to "true",
+        "useTags" to "true",
+        "interfaceOnly" to "false",
+        "skipDefaultInterface" to "false",
+        "useJakartaEe" to "true",
+        "library" to "webclient",
+        "useSpringController" to "false",
+        "openApiNullable" to "false",
+        "generateSupportingFiles" to "true"
     ))
 }
 
 sourceSets {
     main {
         java {
-            srcDir("$buildDir/generated/individuals_api_v1.0/src/main/java/org/openapi/individuals/dto")
+            srcDir("$buildDir/generated/individuals_api_v1.0/src/main/java/org/openapi/individuals")
         }
     }
 }

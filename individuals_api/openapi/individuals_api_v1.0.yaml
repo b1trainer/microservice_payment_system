@@ -3,13 +3,18 @@ info:
   title: Individuals API
   description: REST API для регистрации, логина, обновления токена и получения информации о пользователе через Keycloak.
   version: 1.0.0
+
 servers:
-  - url: http://localhost:8081/v1
+  - url: http://localhost:8081/
+  - url: http://localhost:8080/
 
 paths:
   /auth/registration:
     post:
       summary: Регистрация пользователя
+      operationId: register
+      tags:
+        - Individuals
       requestBody:
         required: true
         content:
@@ -39,6 +44,9 @@ paths:
   /auth/login:
     post:
       summary: Аутентификация пользователя
+      operationId: login
+      tags:
+        - Individuals
       requestBody:
         required: true
         content:
@@ -62,6 +70,9 @@ paths:
   /auth/refresh-token:
     post:
       summary: Обновление токена доступа
+      operationId: refreshToken
+      tags:
+        - Individuals
       requestBody:
         required: true
         content:
@@ -85,8 +96,11 @@ paths:
   /auth/me:
     get:
       summary: Получение данных текущего пользователя
+      operationId: getUserInfo
+      tags:
+        - Individuals
       security:
-        - bearerAuth: []
+        - bearerAuth: [ ]
       responses:
         '200':
           description: Данные пользователя
@@ -107,6 +121,130 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
+  /auth/realms/{realm}/protocol/openid-connect/token:
+    post:
+      summary: Получение токена
+      description: Получение access token из Keycloak
+      operationId: getToken
+      tags:
+        - Authentication
+      parameters:
+        - name: realm
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Keycloak realm
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                  enum: [ client_credentials, password, refresh_token ]
+                  description: Тип grant flow
+                client_id:
+                  type: string
+                  description: Client ID
+                client_secret:
+                  type: string
+                  description: Client secret
+                username:
+                  type: string
+                  description: Имя пользователя (password grant)
+                password:
+                  type: string
+                  description: Пароль (password grant)
+                refresh_token:
+                  type: string
+                  description: Refresh token (refresh_token grant)
+      responses:
+        '200':
+          description: Успешное получение токена
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Неверный запрос
+        '401':
+          description: Неавторизован
+
+  /auth/admin/realms/{realm}/users:
+    post:
+      summary: Создание пользователя
+      description: Создание нового пользователя в Keycloak
+      operationId: createUser
+      tags:
+        - Users
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: realm
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Realm Keycloak
+          example: master
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserRegistrationRequest'
+      responses:
+        '201':
+          description: Пользователь успешно создан
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+        '400':
+          description: Неверный запрос
+        '401':
+          description: Неавторизован
+        '409':
+          description: Пользователь уже существует
+
+  /auth/admin/realms/{realm}/users/{userId}:
+    get:
+      summary: Получение информации о пользователе
+      description: Получение информации о пользователе по ID
+      operationId: getUserInfoById
+      tags:
+        - Users
+      security:
+        - bearerAuth: [ ]
+      parameters:
+        - name: realm
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Realm Keycloak
+          example: master
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: ID пользователя в Keycloak
+      responses:
+        '200':
+          description: Успешное получение информации
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserInfoResponse'
+        '401':
+          description: Неавторизован
+        '404':
+          description: Пользователь не найден
+
 components:
   securitySchemes:
     bearerAuth:
@@ -117,7 +255,7 @@ components:
   schemas:
     UserRegistrationRequest:
       type: object
-      required: [email, password, confirm_password]
+      required: [ email, password, confirm_password ]
       properties:
         email:
           type: string
@@ -129,7 +267,7 @@ components:
 
     UserLoginRequest:
       type: object
-      required: [email, password]
+      required: [ email, password ]
       properties:
         email:
           type: string
@@ -139,7 +277,7 @@ components:
 
     TokenRefreshRequest:
       type: object
-      required: [refresh_token]
+      required: [ refresh_token ]
       properties:
         refresh_token:
           type: string

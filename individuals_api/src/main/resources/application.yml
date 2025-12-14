@@ -23,10 +23,6 @@ spring:
   security:
     oauth2:
       client:
-        provider:
-          keycloak:
-            token-uri: http://localhost:8080/realms/orchestrator/protocol/openid-connect/token
-            authorization-uri: http://localhost:8080/admin/realms/orchestrator/users
         registration:
           keycloak:
             provider: keycloak
@@ -41,3 +37,7 @@ spring:
       resourceserver:
         jwt:
           issuer-uri: http://localhost:8080/realms/orchestrator
+
+keycloak:
+  config:
+    realm: orchestrator
