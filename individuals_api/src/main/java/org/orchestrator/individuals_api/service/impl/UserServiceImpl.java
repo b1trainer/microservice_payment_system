@@ -23,7 +23,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UsersApi usersApi;
     private final AuthenticationApi authenticationApi;
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
     public Mono<TokenResponse> signIn(UserRegistrationRequest signInRequest) {
         String userEmail = signInRequest.getEmail();
 
-        logger.info("Starting registration for user: {}", userEmail);
+        LOGGER.info("Starting registration for user: {}", userEmail);
 
         return authenticationApi.getToken(
                         securityConfig.getRealm(),
@@ -60,10 +60,10 @@ public class UserServiceImpl implements UserService {
                         {
                             apiClient.setBearerToken(adminResponse.getAccessToken());
                             return usersApi.createUser(securityConfig.getRealm(), signInRequest)
-                                    .doOnSuccess(res -> logger.info("User {} successfully created", userEmail))
+                                    .doOnSuccess(res -> LOGGER.info("User {} successfully created", userEmail))
                                     .then(tokenService.getAccessToken(userEmail, signInRequest.getPassword()))
-                                    .doOnSuccess(res -> logger.info("User {} successfully sign in", userEmail))
-                                    .doOnError(error -> logger.error("User sign in is failed", error));
+                                    .doOnSuccess(res -> LOGGER.info("User {} successfully sign in", userEmail))
+                                    .doOnError(error -> LOGGER.error("User sign in is failed", error));
                         }
                 );
     }
@@ -71,22 +71,22 @@ public class UserServiceImpl implements UserService {
     @Override
     public Mono<TokenResponse> logIn(UserLoginRequest loginRequest) {
         return tokenService.getAccessToken(loginRequest.getEmail(), loginRequest.getPassword())
-                .doOnSuccess(res -> logger.info("User {} successfully log in", loginRequest.getEmail()))
-                .doOnError(error -> logger.error("User log in is failed", error));
+                .doOnSuccess(res -> LOGGER.info("User {} successfully log in", loginRequest.getEmail()))
+                .doOnError(error -> LOGGER.error("User log in is failed", error));
     }
 
     @Override
     public Mono<TokenResponse> refreshToken(TokenRefreshRequest refreshRequest) {
         return tokenService.refreshToken(refreshRequest.getRefreshToken())
-                .doOnSuccess(res -> logger.info("Token refresh is successful"))
-                .doOnError(error -> logger.error("Token refresh is failed", error));
+                .doOnSuccess(res -> LOGGER.info("Token refresh is successful"))
+                .doOnError(error -> LOGGER.error("Token refresh is failed", error));
     }
 
     @Override
-    public Mono<UserInfoResponse> getInfo(JwtAuthenticationToken authentication) {
-        return usersApi.getUserInfoById(securityConfig.getRealm(), ((Jwt) authentication.getPrincipal()).getSubject())
-                .doOnSuccess(res -> logger.info("User info fetched successfully"))
-                .doOnError(error -> logger.error("Failed to fetch user info", error))
+    public Mono<UserInfoResponse> getInfo(String userId) {
+        return usersApi.getUserInfoById(securityConfig.getRealm(), userId)
+                .doOnSuccess(res -> LOGGER.info("User info fetched successfully"))
+                .doOnError(error -> LOGGER.error("Failed to fetch user info", error))
                 .onErrorMap(Exception.class, err -> new UserInfoException("Failed to fetch user information: " + err.getMessage()));
     }
 }

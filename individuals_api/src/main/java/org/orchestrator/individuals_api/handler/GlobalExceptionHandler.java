@@ -17,7 +17,7 @@ import reactor.core.publisher.Mono;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
     @ExceptionHandler(Exception.class)
     public Mono<ResponseEntity<ErrorResponse>> handleException(Exception ex, ServerWebExchange exchange) {
@@ -51,7 +51,7 @@ public class GlobalExceptionHandler {
 
     private static Mono<ErrorResponse> getErrorResponseMono(Exception ex, ServerWebExchange exchange) {
         return Mono.fromCallable(() -> {
-            logger.error("Handling error: {}", ex.getMessage());
+            LOGGER.error("Handling error: {}", ex.getMessage());
 
             ErrorResponse errorResponse = new ErrorResponse();
             errorResponse.setError(ex.getMessage());

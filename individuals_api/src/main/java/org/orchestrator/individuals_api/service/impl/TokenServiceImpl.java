@@ -17,7 +17,7 @@ import javax.naming.AuthenticationException;
 @Service
 public class TokenServiceImpl implements TokenService {
 
-    private static final Logger logger = LoggerFactory.getLogger(TokenServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TokenServiceImpl.class);
 
     private final AuthenticationApi authenticationApi;
     private final SecurityConfig securityConfig;
@@ -38,8 +38,8 @@ public class TokenServiceImpl implements TokenService {
                         null,
                         refreshToken
                 )
-                .doOnSuccess(token -> logger.debug("Token refreshed successfully"))
-                .doOnError(error -> logger.error("Token refresh failed", error))
+                .doOnSuccess(token -> LOGGER.debug("Token refreshed successfully"))
+                .doOnError(error -> LOGGER.error("Token refresh failed", error))
                 .onErrorMap(Exception.class,
                         error -> new TokenRefreshException("Failed to refresh token: " + error.getMessage()));
     }
@@ -55,8 +55,8 @@ public class TokenServiceImpl implements TokenService {
                         password,
                         null
                 )
-                .doOnSuccess(token -> logger.debug("Token for user {} received successfully", email))
-                .doOnError(error -> logger.error("Token receive failed", error))
+                .doOnSuccess(token -> LOGGER.debug("Token for user {} received successfully", email))
+                .doOnError(error -> LOGGER.error("Token receive failed", error))
                 .onErrorMap(Exception.class,
                         error -> new AuthenticationException("Failed get access token: " + error.getMessage()));
     }

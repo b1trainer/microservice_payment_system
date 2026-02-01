@@ -13,7 +13,7 @@ public interface UserService {
 
     Mono<TokenResponse> signIn(UserRegistrationRequest request);
 
-    Mono<UserInfoResponse> getInfo(JwtAuthenticationToken token);
+    Mono<UserInfoResponse> getInfo(String userId);
 
     Mono<TokenResponse> logIn(UserLoginRequest loginRequest);
 

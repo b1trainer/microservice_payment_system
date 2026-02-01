@@ -7,10 +7,12 @@ import org.openapi.individuals.dto.UserLoginRequest;
 import org.openapi.individuals.dto.UserRegistrationRequest;
 import org.openapi.individuals.dto.TokenRefreshRequest;
 import org.orchestrator.individuals_api.exception.UnauthorizedException;
+import org.orchestrator.individuals_api.exception.UserAlreadyExistException;
 import org.orchestrator.individuals_api.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
@@ -27,8 +29,12 @@ public class AuthControllerV1 {
 
     @PostMapping("/registration")
     public Mono<ResponseEntity<TokenResponse>> register(@Valid @RequestBody UserRegistrationRequest registrationRequest) {
-        return userService.signIn(registrationRequest)
-                .map(token -> ResponseEntity.status(HttpStatus.CREATED).body(token));
+        return userService
+                .getInfo(registrationRequest.getEmail())
+                .flatMap(user -> user == null
+                        ? userService.signIn(registrationRequest).map(token -> ResponseEntity.status(HttpStatus.CREATED).body(token))
+                        : Mono.error(new UserAlreadyExistException("User already exist"))
+                );
     }
 
     @PostMapping("/login")
@@ -49,7 +55,8 @@ public class AuthControllerV1 {
             throw new UnauthorizedException("Токен аутентификации отсутствует");
         }
 
-        return userService.getInfo(authentication)
+        String userId = ((Jwt) authentication.getPrincipal()).getSubject();
+        return userService.getInfo(userId)
                 .map(user -> ResponseEntity.status(HttpStatus.OK).body(user));
     }
 }
