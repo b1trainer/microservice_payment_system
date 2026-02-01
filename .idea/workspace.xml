@@ -4,17 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cb2dd87d-7f5a-4378-a088-ca81ddf8564a" name="Changes" comment="keycloak">
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/test/java/integration/AuthControllerIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/individuals_api/src/test/resources/realm-config.json" afterDir="false" />
+    <list default="true" id="7c546b45-2a2c-4662-ad76-a883348e7cda" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/openapi/individuals.postman_collection.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/openapi/individuals_api_v1.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/openapi/individuals_api_v1.0.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthControllerV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthControllerV1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/handler/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/handler/GlobalExceptionHandler.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/impl/TokenServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/impl/TokenServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/resources/realm-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/realm-config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/java/integration/AuthControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/integration/AuthControllerIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/IndividualsApiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/TestIndividualsApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/TestIndividualsApiApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/TestcontainersConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/resources/realm-config.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +47,23 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="individuals_api" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="individuals_api" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="individuals_api" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="individuals_api" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="openapi tools" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -56,16 +81,16 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="KubernetesApiPersistence">{}</component>
-  <component name="KubernetesApiProvider">{
-  &quot;isMigrated&quot;: true
-}</component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 2
-}</component>
-  <component name="ProjectId" id="35YUpGw09c7bxVlLYxsLKZstcld" />
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 2
+}]]></component>
+  <component name="ProjectId" id="393zs82Ylfh0PgJnqNBf00kltad" />
   <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
+    <ConfirmationsSetting value="1" id="Add" />
   </component>
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
@@ -75,66 +100,91 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "Docker.docker-compose.yml.grafana: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.individuals-api: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.individuals_api: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.keycloak-postgres: Compose Deployment.executor": "Run",
     "Docker.docker-compose.yml.keycloak: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.loki: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml.prometheus: Compose Deployment.executor": "Run",
-    "Docker.docker-compose.yml: Compose Deployment.executor": "Run",
     "Docker.individuals_api/Dockerfile.executor": "Run",
+    "Gradle.AuthControllerIntegrationTest.executor": "Run",
+    "Gradle.AuthControllerIntegrationTest.shouldRegisterUser.executor": "Run",
     "Gradle.Build individuals_api.executor": "Run",
-    "Gradle.Load Gradle Dependencies.executor": "Run",
     "Gradle.individuals_api [build].executor": "Run",
     "Gradle.individuals_api [clean].executor": "Run",
     "Gradle.individuals_api [openApiGenerate].executor": "Run",
+    "Gradle.individuals_api [openApiValidate].executor": "Run",
+    "OpenAPI/Swagger Code Generator.individuals_api_v1.0.yaml.executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
     "RequestMappingsPanelWidth1": "75",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.individuals_api.executor": "Run",
+    "Spring Boot.IndividualsApiApplication.executor": "Run",
     "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "jdk.selected.JAVA_MODULE": "corretto-24",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/Desktop/Docs/Учеба/microservice_payment_system",
+    "last_opened_file_path": "C:/Users/User/Desktop/Docs/Учеба/file_manager/spring_s3_file_manager_system",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.32068965",
-    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
-    ]
   }
 }]]></component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="org.orchestrator.individuals_api.exception" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\User\Desktop\Docs\Учеба\microservice_payment_system\individuals_api\src\test\resources" />
-      <recent name="C:\Users\User\Desktop\microservice_payment_system\grafana\dashboards" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\User\Desktop\microservice_payment_system\individuals_api\openapi" />
-      <recent name="C:\Users\User\Desktop\microservice_payment_system" />
-      <recent name="C:\Users\User\Desktop\microservice_payment_system\individuals_api\src\main\resources" />
+      <recent name="C:\Users\User\Desktop\Docs\Учеба\microservice_payment_system\individuals_api\openapi" />
     </key>
   </component>
-  <component name="RunManager" selected="Docker.docker-compose.yml.keycloak: Compose Deployment">
+  <component name="RunManager" selected="Gradle.AuthControllerIntegrationTest">
+    <configuration name="AuthControllerIntegrationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/individuals_api" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+            <option value="--tests" />
+            <option value="&quot;org.orchestrator.individuals_api.integration.AuthControllerIntegrationTest&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>true</RunAsTest>
+      <method v="2" />
+    </configuration>
+    <configuration name="individuals_api [build]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/individuals_api" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="build" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <RunAsTest>false</RunAsTest>
+      <method v="2" />
+    </configuration>
     <configuration name="individuals_api [clean]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -179,125 +229,67 @@
       <RunAsTest>false</RunAsTest>
       <method v="2" />
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="microservice_payment_system" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="microservice_payment_system" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="individuals_api" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-      <option name="ALTERNATIVE_JRE_PATH" value="corretto-24" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
+    <configuration name="IndividualsApiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="individuals_api.main" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="org.orchestrator.individuals_api.IndividualsApiApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="individuals_api_v1.0.yaml" type="SwaggerCodegen" editBeforeRun="true" temporary="true" show_console_on_std_err="false" show_console_on_std_out="false">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="envs">
+        <map />
+      </option>
+      <option name="generateToPath" value="C:\Users\User\Desktop\Docs\Учеба\microservice_payment_system\individuals_api\src\main\gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorType" value="OPENAPI_GENERATOR_V6" />
+      <option name="jdkPath" value="C:\User programs\Intellij Idea\IntelliJ IDEA 2024.1.4\jbr\bin\java.exe" />
+      <option name="language" value="java" />
+      <option name="passParentEnvs" value="true" />
+      <option name="programParameters" />
+      <option name="projectPathOnTarget" />
+      <option name="selectedOptions">
+        <list />
+      </option>
+      <option name="specificationPath" value="C:\Users\User\Desktop\Docs\Учеба\microservice_payment_system\individuals_api\openapi\individuals_api_v1.0.yaml" />
+      <option name="workingDirectory" value="C:\Users\User\Desktop\Docs\Учеба\microservice_payment_system\individuals_api\openapi" />
+      <method v="2" />
+    </configuration>
     <configuration default="true" type="docker-deploy" factoryName="docker-compose.yml" temporary="true">
-      <deployment type="docker-compose.yml">
-        <settings />
-      </deployment>
+      <deployment type="docker-compose.yml" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile">
-        <settings />
-      </deployment>
+      <deployment type="dockerfile" />
       <method v="2" />
     </configuration>
-    <configuration name="docker-compose.yml: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.keycloak-postgres: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="keycloak-postgres" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <configuration name="docker-compose.yml.keycloak: Compose Deployment" type="docker-deploy" factoryName="docker-compose.yml" temporary="true" server-name="Docker">
-      <deployment type="docker-compose.yml">
-        <settings>
-          <option name="services">
-            <list>
-              <option value="keycloak" />
-            </list>
-          </option>
-          <option name="sourceFilePath" value="docker-compose.yml" />
-        </settings>
-      </deployment>
-      <method v="2" />
-    </configuration>
-    <list>
-      <item itemvalue="Docker.docker-compose.yml.keycloak-postgres: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
-      <item itemvalue="Docker.docker-compose.yml.keycloak: Compose Deployment" />
-      <item itemvalue="Gradle.individuals_api [clean]" />
-      <item itemvalue="Gradle.individuals_api [openApiGenerate]" />
-      <item itemvalue="Spring Boot.individuals_api" />
-    </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Docker.docker-compose.yml.keycloak: Compose Deployment" />
-        <item itemvalue="Docker.docker-compose.yml.keycloak-postgres: Compose Deployment" />
+        <item itemvalue="Gradle.AuthControllerIntegrationTest" />
         <item itemvalue="Gradle.individuals_api [openApiGenerate]" />
+        <item itemvalue="OpenAPI/Swagger Code Generator.individuals_api_v1.0.yaml" />
         <item itemvalue="Gradle.individuals_api [clean]" />
-        <item itemvalue="Docker.docker-compose.yml: Compose Deployment" />
+        <item itemvalue="Gradle.individuals_api [build]" />
       </list>
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="cb2dd87d-7f5a-4378-a088-ca81ddf8564a" name="Changes" comment="" />
-      <created>1763286679680</created>
+      <changelist id="7c546b45-2a2c-4662-ad76-a883348e7cda" name="Changes" comment="" />
+      <created>1769939745939</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1763286679680</updated>
-      <workItem from="1763286680750" duration="396000" />
-      <workItem from="1763287532450" duration="9297000" />
-      <workItem from="1763572265463" duration="5059000" />
-      <workItem from="1763578564468" duration="109000" />
-      <workItem from="1763651999161" duration="2615000" />
-      <workItem from="1763998001396" duration="8788000" />
-      <workItem from="1764494780037" duration="18636000" />
-      <workItem from="1764687880695" duration="7011000" />
-      <workItem from="1765102274432" duration="8408000" />
-      <workItem from="1765114671696" duration="10809000" />
-      <workItem from="1765125809247" duration="13000" />
-      <workItem from="1765125845772" duration="237000" />
-      <workItem from="1765126100498" duration="3408000" />
-      <workItem from="1765199759081" duration="3398000" />
-      <workItem from="1765724808931" duration="14410000" />
-      <workItem from="1769936833552" duration="2360000" />
-      <workItem from="1769939245004" duration="48000" />
+      <updated>1769939745939</updated>
+      <workItem from="1769939746951" duration="18658000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XSLT-Support.FileAssociations.UIState">
-    <expand />
-    <select />
   </component>
 </project>

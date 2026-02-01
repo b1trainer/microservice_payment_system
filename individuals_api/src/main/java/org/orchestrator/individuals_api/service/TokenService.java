@@ -9,4 +9,6 @@ public interface TokenService {
 
     Mono<TokenResponse> getAccessToken(String email, String password);
 
+    Mono<TokenResponse> getAdminToken();
+
 }

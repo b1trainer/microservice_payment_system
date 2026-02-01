@@ -27,7 +27,7 @@ spring:
           keycloak:
             provider: keycloak
             client-id: orchestrator
-            client-secret: UXZLFcKOlgakfTy12nff8ZaJ2LmNcOCo
+            client-secret: kqXKpfxQyaYkl9iqAc6AMeowishFLkNz
             client-name: orchestrator
             authorization-grant-type: authorization_code
             scope:

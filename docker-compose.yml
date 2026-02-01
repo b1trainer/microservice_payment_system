@@ -1,6 +1,7 @@
 services:
   individuals-api:
-    build: ./individuals_api
+    build:
+      context: ./individuals_api
     container_name: individuals_api
     ports:
       - "8081:8081"
@@ -9,15 +10,15 @@ services:
       CLIENT_ID: orchestrator
       CLIENT_NAME: orchestrator
       KEYCLOAK_REALM: orchestrator
-      CLIENT_SECRET: UXZLFcKOlgakfTy12nff8ZaJ2LmNcOCo
+      CLIENT_SECRET: kqXKpfxQyaYkl9iqAc6AMeowishFLkNz
       OAUTH2_JWT_ISSUER_URI: http://localhost:8080/realms/orchestrator
-    depends_on:
-      keycloak:
-        condition: service_started
-      prometheus:
-        condition: service_healthy
-      loki:
-        condition: service_healthy
+#    depends_on:
+#      keycloak:
+#        condition: service_started
+#      prometheus:
+#        condition: service_healthy
+#      loki:
+#        condition: service_healthy
     healthcheck:
       test: [ "CMD", "wget", "--spider", "http://localhost:8081/actuator/health" ]
       interval: 10s

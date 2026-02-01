@@ -5,11 +5,11 @@ info:
   version: 1.0.0
 
 servers:
-  - url: http://localhost:8081/
   - url: http://localhost:8080/
+    description: Keycloak Server
 
 paths:
-  /auth/registration:
+  /v1/auth/registration:
     post:
       summary: Регистрация пользователя
       operationId: register
@@ -41,7 +41,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /auth/login:
+  /v1/auth/login:
     post:
       summary: Аутентификация пользователя
       operationId: login
@@ -67,7 +67,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /auth/refresh-token:
+  /v1/auth/refresh-token:
     post:
       summary: Обновление токена доступа
       operationId: refreshToken
@@ -93,7 +93,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /auth/me:
+  /v1/auth/me:
     get:
       summary: Получение данных текущего пользователя
       operationId: getUserInfo
@@ -121,7 +121,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /auth/realms/{realm}/protocol/openid-connect/token:
+  /realms/{realm}/protocol/openid-connect/token:
     post:
       summary: Получение токена
       description: Получение access token из Keycloak
@@ -173,7 +173,7 @@ paths:
         '401':
           description: Неавторизован
 
-  /auth/admin/realms/{realm}/users:
+  /admin/realms/{realm}/users:
     post:
       summary: Создание пользователя
       description: Создание нового пользователя в Keycloak
@@ -210,7 +210,7 @@ paths:
         '409':
           description: Пользователь уже существует
 
-  /auth/admin/realms/{realm}/users/{userId}:
+  /admin/realms/{realm}/users/{userId}:
     get:
       summary: Получение информации о пользователе
       description: Получение информации о пользователе по ID
@@ -255,15 +255,43 @@ components:
   schemas:
     UserRegistrationRequest:
       type: object
-      required: [ email, password, confirm_password ]
+      required: [ username, email, enabled, credentials ]
       properties:
+        username:
+          type: string
+          description: Username (same as email)
         email:
           type: string
           format: email
-        password:
+        enabled:
+          type: boolean
+          default: true
+        emailVerified:
+          type: boolean
+          default: true
+        firstName:
           type: string
-        confirm_password:
+        lastName:
           type: string
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/CredentialRepresentation'
+
+    CredentialRepresentation:
+      type: object
+      required: [ type, value ]
+      properties:
+        type:
+          type: string
+          enum: [ password, totp, secret ]
+          default: password
+        value:
+          type: string
+          description: The credential value (e.g., password)
+        temporary:
+          type: boolean
+          default: false
 
     UserLoginRequest:
       type: object

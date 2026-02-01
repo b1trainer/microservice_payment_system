@@ -36,7 +36,7 @@ dependencies {
     testImplementation("org.springframework.security:spring-security-test")
     testImplementation("io.projectreactor:reactor-test")
     testImplementation("org.testcontainers:junit-jupiter")
-    testImplementation("com.github.dasniko:testcontainers-keycloak:3.9.0")
+    testImplementation("com.github.dasniko:testcontainers-keycloak:4.1.1")
 }
 
 tasks.withType<Test> {

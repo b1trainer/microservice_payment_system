@@ -6,17 +6,13 @@ import org.openapi.individuals.dto.UserInfoResponse;
 import org.openapi.individuals.dto.UserLoginRequest;
 import org.openapi.individuals.dto.UserRegistrationRequest;
 import org.orchestrator.individuals_api.config.SecurityConfig;
-import org.orchestrator.individuals_api.exception.KeycloakAuthException;
 import org.orchestrator.individuals_api.exception.UserInfoException;
 import org.orchestrator.individuals_api.service.TokenService;
 import org.orchestrator.individuals_api.service.UserService;
-import org.openapi.individuals.api.AuthenticationApi;
 import org.openapi.individuals.api.UsersApi;
 import org.openapi.individuals.invoker.ApiClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -26,15 +22,13 @@ public class UserServiceImpl implements UserService {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final UsersApi usersApi;
-    private final AuthenticationApi authenticationApi;
     private final ApiClient apiClient;
     private final TokenService tokenService;
     private final SecurityConfig securityConfig;
 
     public UserServiceImpl(TokenService tokenService, SecurityConfig securityConfig,
-                           AuthenticationApi authenticationApi, UsersApi usersApi, ApiClient apiClient) {
+                           UsersApi usersApi, ApiClient apiClient) {
         this.usersApi = usersApi;
-        this.authenticationApi = authenticationApi;
         this.apiClient = apiClient;
         this.tokenService = tokenService;
         this.securityConfig = securityConfig;
@@ -46,22 +40,14 @@ public class UserServiceImpl implements UserService {
 
         LOGGER.info("Starting registration for user: {}", userEmail);
 
-        return authenticationApi.getToken(
-                        securityConfig.getRealm(),
-                        "client_credentials",
-                        securityConfig.getClientId(),
-                        securityConfig.getClientSecret(),
-                        null,
-                        null,
-                        null
-                )
-                .onErrorMap(Exception.class, err -> new KeycloakAuthException("Failed to get admin access token: " + err))
+        return tokenService.getAdminToken()
                 .flatMap(adminResponse ->
                         {
+                            apiClient.setBasePath("");
                             apiClient.setBearerToken(adminResponse.getAccessToken());
                             return usersApi.createUser(securityConfig.getRealm(), signInRequest)
                                     .doOnSuccess(res -> LOGGER.info("User {} successfully created", userEmail))
-                                    .then(tokenService.getAccessToken(userEmail, signInRequest.getPassword()))
+                                    .then(tokenService.getAccessToken(userEmail, signInRequest.getCredentials().getFirst().getValue()))
                                     .doOnSuccess(res -> LOGGER.info("User {} successfully sign in", userEmail))
                                     .doOnError(error -> LOGGER.error("User sign in is failed", error));
                         }

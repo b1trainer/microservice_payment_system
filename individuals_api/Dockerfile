@@ -2,7 +2,8 @@ FROM eclipse-temurin:24-jdk AS builder
 
 WORKDIR /app
 
-COPY . /app
+COPY . .
+RUN sed -i 's/\r$//' gradlew && chmod +x gradlew
 
 RUN ./gradlew dependencies --no-daemon
 RUN ./gradlew openApiGenerate --no-daemon

@@ -60,4 +60,21 @@ public class TokenServiceImpl implements TokenService {
                 .onErrorMap(Exception.class,
                         error -> new AuthenticationException("Failed get access token: " + error.getMessage()));
     }
+
+    @Override
+    public Mono<TokenResponse> getAdminToken() {
+        return authenticationApi.getToken(
+                        securityConfig.getRealm(),
+                        "client_credentials",
+                        securityConfig.getClientId(),
+                        securityConfig.getClientSecret(),
+                        null,
+                        null,
+                        null
+                )
+                .doOnSuccess(token -> LOGGER.debug("Admin token received successfully"))
+                .doOnError(error -> LOGGER.error("Admin token receive failed", error))
+                .onErrorMap(Exception.class,
+                        error -> new AuthenticationException("Failed get admin access token: " + error.getMessage()));
+    }
 }
