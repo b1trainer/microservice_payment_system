@@ -40,4 +40,5 @@ spring:
 
 keycloak:
   config:
+    expiryThresholdSec: 30
     realm: orchestrator

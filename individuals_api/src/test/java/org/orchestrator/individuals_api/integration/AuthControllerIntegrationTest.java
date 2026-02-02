@@ -13,6 +13,8 @@ import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.openapi.individuals.dto.CredentialRepresentation;
+import org.openapi.individuals.dto.UserLoginRequest;
+import org.openapi.individuals.dto.TokenRefreshRequest;
 
 import java.util.List;
 
@@ -22,7 +24,10 @@ public class AuthControllerIntegrationTest {
 
     @Container
     private static final KeycloakContainer keycloak = new KeycloakContainer()
-            .withRealmImportFile("realm-config.json");
+            .withRealmImportFile("realm-config.json")
+            .withExposedPorts(8080)
+            .waitingFor(Wait.forHttp("/").forPort(8080))
+            .withEnv("KC_HTTP_PORT", "8080");
 
     @DynamicPropertySource
     static void configureKeycloakProperties(DynamicPropertyRegistry registry) {
@@ -57,18 +62,90 @@ public class AuthControllerIntegrationTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .bodyValue(registrationRequest)
                 .exchange()
-                .expectStatus().isOk();
+                .expectStatus().isCreated()
+                .expectBody()
+                .jsonPath("$.access_token").isNotEmpty()
+                .jsonPath("$.refresh_token").isNotEmpty()
+                .jsonPath("$.expires_in").isNotEmpty();
     }
 
-//    @Test
-//    void shouldLogInUser() {
-//    }
-//
-//    @Test
-//    void shouldRefreshToken() {
-//    }
-//
-//    @Test
-//    void shouldReturnUserInfo() {
-//    }
+    // todo add saved in realm-config.json user
+    @Test
+    void shouldLogInUser() {
+        UserLoginRequest loginRequest = new UserLoginRequest()
+                .email("")
+                .password("");
+
+        webTestClient
+                .post()
+                .uri("/v1/auth/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(loginRequest)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.access_token").isNotEmpty()
+                .jsonPath("$.refresh_token").isNotEmpty()
+                .jsonPath("$.expires_in").isNotEmpty();
+    }
+
+    // todo add saved in realm-config.json user
+    @Test
+    void shouldRefreshToken() {
+        UserLoginRequest loginRequest = new UserLoginRequest()
+                .email("")
+                .password("");
+
+        String refreshToken = webTestClient
+                .post()
+                .uri("/v1/auth/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(loginRequest)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.refresh_token")
+                .toString();
+
+        TokenRefreshRequest refreshRequest = new TokenRefreshRequest()
+                .refreshToken(refreshToken);
+
+        webTestClient
+                .post()
+                .uri("/v1/auth/refresh-token")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(refreshRequest)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.access_token").isNotEmpty()
+                .jsonPath("$.refresh_token").isNotEmpty()
+                .jsonPath("$.expires_in").isNotEmpty();
+    }
+
+    // todo add saved in realm-config.json user
+    @Test
+    void shouldReturnUserInfo() {
+        UserLoginRequest loginRequest = new UserLoginRequest()
+                .email("")
+                .password("");
+
+        String accessToken = webTestClient
+                .post()
+                .uri("/v1/auth/login")
+                .contentType(MediaType.APPLICATION_JSON)
+                .bodyValue(loginRequest)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody()
+                .jsonPath("$.access_token")
+                .toString();
+
+        webTestClient
+                .get()
+                .uri("/v1/auth/me")
+                .header("Authorization", "Bearer " + accessToken)
+                .exchange()
+                .expectStatus().isOk();
+    }
 }

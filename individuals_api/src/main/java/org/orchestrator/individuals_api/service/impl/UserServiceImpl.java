@@ -5,7 +5,7 @@ import org.openapi.individuals.dto.TokenResponse;
 import org.openapi.individuals.dto.UserInfoResponse;
 import org.openapi.individuals.dto.UserLoginRequest;
 import org.openapi.individuals.dto.UserRegistrationRequest;
-import org.orchestrator.individuals_api.config.SecurityConfig;
+import org.orchestrator.individuals_api.config.KeycloakConfig;
 import org.orchestrator.individuals_api.exception.UserInfoException;
 import org.orchestrator.individuals_api.service.TokenService;
 import org.orchestrator.individuals_api.service.UserService;
@@ -24,14 +24,14 @@ public class UserServiceImpl implements UserService {
     private final UsersApi usersApi;
     private final ApiClient apiClient;
     private final TokenService tokenService;
-    private final SecurityConfig securityConfig;
+    private final KeycloakConfig keycloakConfig;
 
-    public UserServiceImpl(TokenService tokenService, SecurityConfig securityConfig,
+    public UserServiceImpl(TokenService tokenService, KeycloakConfig keycloakConfig,
                            UsersApi usersApi, ApiClient apiClient) {
         this.usersApi = usersApi;
         this.apiClient = apiClient;
         this.tokenService = tokenService;
-        this.securityConfig = securityConfig;
+        this.keycloakConfig = keycloakConfig;
     }
 
     @Override
@@ -43,9 +43,8 @@ public class UserServiceImpl implements UserService {
         return tokenService.getAdminToken()
                 .flatMap(adminResponse ->
                         {
-                            apiClient.setBasePath("");
                             apiClient.setBearerToken(adminResponse.getAccessToken());
-                            return usersApi.createUser(securityConfig.getRealm(), signInRequest)
+                            return usersApi.createUser(keycloakConfig.getRealm(), signInRequest)
                                     .doOnSuccess(res -> LOGGER.info("User {} successfully created", userEmail))
                                     .then(tokenService.getAccessToken(userEmail, signInRequest.getCredentials().getFirst().getValue()))
                                     .doOnSuccess(res -> LOGGER.info("User {} successfully sign in", userEmail))
@@ -70,7 +69,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Mono<UserInfoResponse> getInfo(String userId) {
-        return usersApi.getUserInfoById(securityConfig.getRealm(), userId)
+        return usersApi.getUserInfoById(keycloakConfig.getRealm(), userId)
                 .doOnSuccess(res -> LOGGER.info("User info fetched successfully"))
                 .doOnError(error -> LOGGER.error("Failed to fetch user info", error))
                 .onErrorMap(Exception.class, err -> new UserInfoException("Failed to fetch user information: " + err.getMessage()));

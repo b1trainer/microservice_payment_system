@@ -5,24 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7c546b45-2a2c-4662-ad76-a883348e7cda" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/openapi/individuals.postman_collection.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/openapi/individuals_api_v1.0.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/openapi/individuals_api_v1.0.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthControllerV1.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/controller/AuthControllerV1.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/java/org/orchestrator/individuals_api/service/impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/main/resources/realm-config.json" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/main/resources/realm-config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/java/integration/AuthControllerIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/integration/AuthControllerIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/IndividualsApiApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/TestIndividualsApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/TestIndividualsApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/java/org/orchestrator/individuals_api/TestcontainersConfiguration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/individuals_api/src/test/resources/realm-config.json" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -285,7 +269,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1769939745939</updated>
-      <workItem from="1769939746951" duration="18658000" />
+      <workItem from="1769939746951" duration="19212000" />
     </task>
     <servers />
   </component>

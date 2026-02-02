@@ -312,6 +312,7 @@ components:
 
     TokenResponse:
       type: object
+      required: [ access_token, refresh_token, expires_in ]
       properties:
         access_token:
           type: string

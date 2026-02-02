@@ -20,9 +20,6 @@ public class SecurityConfig {
     @Value("${spring.security.oauth2.client.registration.keycloak.client-secret}")
     private String clientSecret;
 
-    @Value("${keycloak.config.realm}")
-    private String realm;
-
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
         return http
@@ -63,9 +60,5 @@ public class SecurityConfig {
 
     public String getClientSecret() {
         return clientSecret;
-    }
-
-    public String getRealm() {
-        return realm;
     }
 }
